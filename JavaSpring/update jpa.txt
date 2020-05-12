@@ -1,0 +1,26 @@
+@Autowired
+	Servicerepo sp;
+	@GetMapping("/")
+	public String index()
+	{Entclass c = new Entclass();
+	c.id=100;
+	c.name="ramez";
+		c.gasem = "dasem";
+		sp.msave(c);
+
+//update starting
+
+	Entclass fob= sp.findById(1).get();
+	
+		fob.name = "ahmed";// change name of user in database
+	sp.msave(fob);
+	
+	
+
+	
+ sp.findByGasem("dasem");
+
+	
+	
+		return "index.html";
+	}

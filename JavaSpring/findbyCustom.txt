@@ -1,0 +1,64 @@
+@Repository
+public interface Repo extends JpaRepository<Entclass, Integer> {
+	  Optional <Entclass> findById(int id);
+	  Optional <Entclass> findByName(String name);
+	  @Query("FROM Entclass WHERE gasem = ?1")
+	   Entclass findByGasem(String gasem);
+	  @Query("update Entclass set gasem=?1 where name=?2")
+	  Entclass myupdate(String g,String n);
+}
+
+
+package com.Hibernate.api;
+
+import java.util.List;
+import java.util.Optional;
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class Servicerepo {
+@Autowired
+	Repo rp;
+
+	public void msave(Entclass c)
+	{
+		rp.save(c);
+		
+		
+	}
+	  Optional <Entclass> findById(int id){
+		  
+		  return rp.findById(id);
+	  }
+	  
+  Optional <Entclass> findByName(String name){
+		  
+		  return rp.findByName(name);
+	  }
+ 
+ void findByGasem(String gasem){
+	  
+	  Entclass obj = rp.findByGasem(gasem);
+	  obj.gasem = "lasem";
+String name = obj.name;	
+int id = obj.id;
+System.out.println(name+" "+id);
+	  
+  }
+ 
+	
+}
+
+
+//main
+
+sp.findByGasem("dasem");
+
+
