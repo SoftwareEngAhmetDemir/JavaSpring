@@ -1,3 +1,8 @@
+//we can use native query
+
+//@Query(value="select * from emp  where firstname=?1",nativeQuery = true)
+
+
 @Repository
 public interface Repo extends JpaRepository<Entclass, Integer> {
 	  Optional <Entclass> findById(int id);
